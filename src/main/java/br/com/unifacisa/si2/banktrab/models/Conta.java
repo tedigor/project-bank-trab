@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,10 @@ public class Conta extends EntityBase<Long> {
 
 	@Column(name = "ATIVO")
 	private Boolean isAtivo;
+	
+	@OneToOne
+	@JoinColumn(name = "ID_CLIENTE", nullable = false)
+	private Cliente cliente;
 
 	@Override
 	public void setId(Long id) {

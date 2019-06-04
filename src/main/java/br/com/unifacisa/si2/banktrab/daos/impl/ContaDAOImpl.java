@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import br.com.unifacisa.si2.banktrab.daos.ContaDAO;
 import br.com.unifacisa.si2.banktrab.models.Conta;
 
-@Repository
+@Repository(value = "ContaDAO")
 public class ContaDAOImpl extends BaseDAOImpl<Long, Conta> implements ContaDAO{
 
 }
