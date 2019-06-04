@@ -12,27 +12,27 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CONTAS")
+@Table(name = "Contas")
 public class Conta extends EntityBase<Long> {
 
 	private static final long serialVersionUID = 5457433679259238167L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID_CONTA")
+	@Column(name = "Id_conta")
 	private Long id;
 
-	@Column(name = "NUM_CONTA")
+	@Column(name = "Numero")
 	private Long numeroConta;
 
-	@Column(name = "SALDO")
+	@Column(name = "Saldo")
 	private BigDecimal saldo;
 
-	@Column(name = "ATIVO")
+	@Column(name = "flagAtivo")
 	private Boolean isAtivo;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_CLIENTE", nullable = false)
+	@JoinColumn(name = "Id_cliente", nullable = false)
 	private Cliente cliente;
 
 	@Override
