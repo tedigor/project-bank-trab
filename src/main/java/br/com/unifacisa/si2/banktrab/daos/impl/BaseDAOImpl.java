@@ -25,12 +25,36 @@ public class BaseDAOImpl<K extends Serializable, T extends EntityBase<K>> implem
 	}
 
 	public List<T> findAll() {
-		
+
 		CriteriaQuery<T> query = getCriteriaBuilder().createQuery(classe);
 		Root<T> from = query.from(classe);
 		query.select(from);
 
 		return getEntityManager().createQuery(query).getResultList();
+	}
+
+	public T save(T entity) {
+
+		if (entity.getId() != null) {
+			getEntityManager().merge(entity);
+		} else {
+			getEntityManager().persist(entity);
+		}
+
+		return entity;
+	}
+
+	public T deleteById(K id) {
+
+		T entity = getEntityManager().find(classe, id);
+		entity.setAtivo(false);
+		getEntityManager().merge(entity);
+
+		return entity;
+	}
+
+	public T findById(K id) {
+		return getEntityManager().find(classe, id);
 	}
 
 	protected EntityManager getEntityManager() {

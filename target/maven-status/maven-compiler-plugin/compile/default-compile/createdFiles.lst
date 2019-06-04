@@ -1,0 +1,5 @@
+br\com\unifacisa\si2\banktrab\Banktrab.class
+br\com\unifacisa\si2\banktrab\models\EntityBase.class
+BaseDAO.class
+br\com\unifacisa\si2\banktrab\daos\BaseDAO.class
+br\com\unifacisa\si2\banktrab\daos\impl\BaseDAOImpl.class

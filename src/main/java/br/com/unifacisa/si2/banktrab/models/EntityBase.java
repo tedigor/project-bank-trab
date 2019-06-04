@@ -9,12 +9,14 @@ public abstract class EntityBase<K extends Serializable> implements Serializable
 
 	private static final long serialVersionUID = -68651697954753660L;
 	
-	public abstract void setId();
+	public abstract void setId(K id);
 	
 	public abstract K getId();
 	
-	public abstract void setExclusaoLogica();
+	public abstract void setAtivo(Boolean exclusaoLogica);
 	
-	public abstract Boolean getExclusaoLogica();
+	public abstract Boolean getAtivo();
+	
+	public abstract Boolean equals();
 	
 }
