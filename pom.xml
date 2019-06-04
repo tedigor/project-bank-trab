@@ -1,18 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.unifacisa.si.si2.htj.trabson.bank</groupId>
-  <artifactId>TrabBank</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>TrabBank</name>
-  <description>Projeto final da disciplina SI2</description>
-  
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.unifacisa.si.si2.htj.trabson.bank</groupId>
+	<artifactId>TrabBank</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>TrabBank</name>
+	<description>Projeto final da disciplina SI2</description>
+
+	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.2.Final</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.1.8.RELEASE</version>
+		</dependency>
+
 	</dependencies>
-  
+
 </project>
