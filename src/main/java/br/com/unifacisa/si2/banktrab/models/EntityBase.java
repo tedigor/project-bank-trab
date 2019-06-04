@@ -17,6 +17,5 @@ public abstract class EntityBase<K extends Serializable> implements Serializable
 	
 	public abstract Boolean getAtivo();
 	
-	public abstract Boolean equals();
 	
 }
