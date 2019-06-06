@@ -23,7 +23,7 @@ public class ClienteService {
 
 	@Autowired
 	private ContaService contaService;
-	
+
 	@Autowired
 	private ContaBuilder contaBuilder;
 
@@ -64,10 +64,6 @@ public class ClienteService {
 		if (dao.existysByNome(clienteDto.getNome())) {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_04));
 		}
-	}
-
-	public ExibirInfoClienteDTO consultarSaldo(String token) {
-		return new ExibirInfoClienteDTO(contaService.consultarSaldo(token));
 	}
 
 }

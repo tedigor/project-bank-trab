@@ -12,6 +12,7 @@ import br.com.si2.trabbank.trabbank.constants.MensagensConstants;
 import br.com.si2.trabbank.trabbank.daos.ContaDAO;
 import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
 import br.com.si2.trabbank.trabbank.dtos.AlterarDadosDTO;
+import br.com.si2.trabbank.trabbank.dtos.ExibirInfoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemRetorno;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
@@ -104,9 +105,9 @@ public class ContaService {
 
 	}
 
-	public BigDecimal consultarSaldo(String token) {
+	public ExibirInfoClienteDTO consultarSaldo(String token) {
 		Conta c = context.getConta(token);
-		return c.getSaldo();
+		return  new ExibirInfoClienteDTO(c.getSaldo());
 	}
 
 	public MensagemSucesso realizarTransacao(String token, TransacaoDTO transacao) {
