@@ -14,7 +14,7 @@ public class TokenService {
 	private JWTUtils jwtUtil;
 
 	private static final String HEADER_AUTHORIZATION = "Authorization";
-	private static final String TOKEN_PREFIX = "Authorization ";
+	private static final String TOKEN_PREFIX = "Bearer ";
 
 	public HttpHeaders addTokenToHeader(Conta conta, String token) {
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -24,6 +24,10 @@ public class TokenService {
 
 	public String generateToken(Conta conta) {
 		return jwtUtil.generateToken(conta);
+	}
+
+	public Long getNumeroConta(String token) {
+		return jwtUtil.getSubject(token.substring(7));
 	}
 
 }

@@ -7,6 +7,7 @@ import br.com.si2.trabbank.trabbank.builders.ContaBuilder;
 import br.com.si2.trabbank.trabbank.constants.MensagensConstants;
 import br.com.si2.trabbank.trabbank.daos.ClienteDAO;
 import br.com.si2.trabbank.trabbank.dtos.ClienteDTO;
+import br.com.si2.trabbank.trabbank.dtos.ExibirInfoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.enums.TipoConta;
@@ -59,6 +60,10 @@ public class ClienteService {
 		if (dao.existysByNome(clienteDto.getNome())) {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_04));
 		}
+	}
+
+	public ExibirInfoClienteDTO consultarSaldo(String token) {
+		return new ExibirInfoClienteDTO(contaService.consultarSaldo(token));
 	}
 
 }

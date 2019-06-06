@@ -13,12 +13,16 @@ import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.exceptions.BankTrabException;
 import br.com.si2.trabbank.trabbank.models.Conta;
+import br.com.si2.trabbank.trabbank.security.ContextoAutorizacao;
 
 @Service
 public class ContaService {
 
 	@Autowired
 	private ContaDAO dao;
+
+	@Autowired
+	private ContextoAutorizacao context;
 
 	public Conta findConta(Long id) {
 
@@ -90,4 +94,10 @@ public class ContaService {
 		return list.get(0);
 
 	}
+
+	public BigDecimal consultarSaldo(String token) {
+		Conta c = context.getConta(token);
+		return c.getSaldo();
+	}
+
 }
