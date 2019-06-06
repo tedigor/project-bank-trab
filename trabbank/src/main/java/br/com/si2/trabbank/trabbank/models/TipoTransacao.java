@@ -10,15 +10,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipo_transacao")
 public class TipoTransacao extends EntityBase<Integer> {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_tipo_transacao")
 	private Integer id;
-	
+
 	@Column(name = "nom_tipo_transacao")
 	private String tipo;
-	
+
 	@Column(name = "ativo")
 	private Boolean isAtivo;
 
@@ -47,7 +48,5 @@ public class TipoTransacao extends EntityBase<Integer> {
 	public Boolean getAtivo() {
 		return this.isAtivo;
 	}
-	
-	
-	
+
 }

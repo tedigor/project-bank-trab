@@ -22,14 +22,12 @@ public class TransacaoService {
 
 	@Autowired
 	private TransacaoDAO transacaoDao;
-	
+
 	@Autowired
 	private TransacaoBuilder transacaoBuilder;
 
 	public MensagemSucesso realizarTransacao(TransacaoDTO transacaoDTO) {
-
 		return inicarChain(transacaoDTO);
-
 	}
 
 	private MensagemSucesso inicarChain(TransacaoDTO transacaoDTO) {
@@ -60,7 +58,7 @@ public class TransacaoService {
 		}
 
 	}
-	
+
 	private MensagemSucesso emprestimo(TransacaoDTO transacaoDTO) {
 
 		if (TipoTransacao.EMPRESTIMO.equals(transacaoDTO.getTipoTransacao())) {
@@ -74,7 +72,7 @@ public class TransacaoService {
 
 			conta.setSaldo(conta.getSaldo().add(transacaoDTO.getValor()));
 			conta.setLimite(conta.getLimite().subtract(transacaoDTO.getValor()));
-			
+
 			conta.getTransacoes().add(transacao);
 
 			transacaoDao.save(transacao);
@@ -146,7 +144,7 @@ public class TransacaoService {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_08));
 		}
 	}
-	
+
 	private void validarLimite(TransacaoDTO transacaoDTO, Conta conta) {
 		if (conta.getLimite().compareTo(transacaoDTO.getValor()) < 0) {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_08));

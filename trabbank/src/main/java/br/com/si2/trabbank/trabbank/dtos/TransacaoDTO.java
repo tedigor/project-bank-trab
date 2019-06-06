@@ -7,12 +7,19 @@ import br.com.si2.trabbank.trabbank.enums.TipoTransacao;
 public class TransacaoDTO {
 
 	private Long contaOrigem;
-	
+
 	private Long contaFinal;
-	
+
 	private TipoTransacao tipoTransacao;
-	
+
 	private BigDecimal valor;
+
+	public TransacaoDTO(Long contaOrigem, Long contaFinal, TipoTransacao tipoTransacao, BigDecimal valor) {
+		this.contaOrigem = contaOrigem;
+		this.contaFinal = contaFinal;
+		this.tipoTransacao = tipoTransacao;
+		this.valor = valor;
+	}
 
 	public Long getContaOrigem() {
 		return contaOrigem;
@@ -45,5 +52,5 @@ public class TransacaoDTO {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-	
+
 }

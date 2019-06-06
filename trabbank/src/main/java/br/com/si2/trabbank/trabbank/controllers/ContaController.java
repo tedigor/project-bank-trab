@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
+import br.com.si2.trabbank.trabbank.dtos.TransacaoExtratoDTO;
 import br.com.si2.trabbank.trabbank.models.Conta;
 import br.com.si2.trabbank.trabbank.services.ContaService;
 
@@ -30,14 +31,20 @@ public class ContaController {
 		return new ResponseEntity<List<Conta>>(contaService.findAll(), HttpStatus.OK);
 	}
 
+	@GetMapping("extrato")
+	public ResponseEntity<List<TransacaoExtratoDTO>> listarContas(@RequestHeader("Authorization") String token) {
+		return new ResponseEntity<List<TransacaoExtratoDTO>>(contaService.findExtrato(token), HttpStatus.OK);
+	}
+
 	@DeleteMapping("{id}")
 	public ResponseEntity<MensagemSucesso> desativarConta(Long id) {
 		return new ResponseEntity<MensagemSucesso>(contaService.desativarConta(id), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("transacao")
-	public ResponseEntity<MensagemSucesso> realizarTransacao(@RequestHeader("Authorization") String token , @RequestBody TransacaoDTO transacaoDTO){
-		return new ResponseEntity<MensagemSucesso>(contaService.realizarTransacao(token,transacaoDTO), HttpStatus.OK);
+	public ResponseEntity<MensagemSucesso> realizarTransacao(@RequestHeader("Authorization") String token,
+			@RequestBody TransacaoDTO transacaoDTO) {
+		return new ResponseEntity<MensagemSucesso>(contaService.realizarTransacao(token, transacaoDTO), HttpStatus.OK);
 	}
 
 }

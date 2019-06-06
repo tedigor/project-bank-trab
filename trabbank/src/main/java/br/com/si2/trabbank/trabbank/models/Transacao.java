@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "transacao")
+@Table(name = "transacoes")
 public class Transacao extends EntityBase<Long> {
 
 	private static final long serialVersionUID = 6147092979232488852L;
@@ -55,10 +55,21 @@ public class Transacao extends EntityBase<Long> {
 		this.valor = valor;
 	}
 
+	public Boolean getIsAtivo() {
+		return isAtivo;
+	}
+
+	public void setIsAtivo(Boolean isAtivo) {
+		this.isAtivo = isAtivo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public void setAtivo(Boolean exclusaoLogica) {
 		this.isAtivo = exclusaoLogica;
-
 	}
 
 	@Override

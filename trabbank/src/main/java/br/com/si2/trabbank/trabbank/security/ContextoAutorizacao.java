@@ -21,6 +21,10 @@ public class ContextoAutorizacao {
 
 	public Conta getConta(String token) {
 
+		if (token.isEmpty()) {
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_10));
+		}
+
 		Long numero = tokenService.getNumeroConta(token);
 
 		Conta c = contaService.findByNumero(numero);

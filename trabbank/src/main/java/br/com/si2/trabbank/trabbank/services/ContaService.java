@@ -2,6 +2,7 @@ package br.com.si2.trabbank.trabbank.services;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
+import br.com.si2.trabbank.trabbank.dtos.TransacaoExtratoDTO;
 import br.com.si2.trabbank.trabbank.exceptions.BankTrabException;
 import br.com.si2.trabbank.trabbank.models.Conta;
 import br.com.si2.trabbank.trabbank.security.ContextoAutorizacao;
@@ -21,7 +23,7 @@ public class ContaService {
 
 	@Autowired
 	private ContaDAO dao;
-	
+
 	@Autowired
 	private TransacaoService transacaoService;
 
@@ -104,9 +106,14 @@ public class ContaService {
 		return c.getSaldo();
 	}
 
-	public MensagemSucesso realizarTransacao(String token,TransacaoDTO transacao) {
-		Conta conta = context.getConta(token);
+	public MensagemSucesso realizarTransacao(String token, TransacaoDTO transacao) {
+		context.getConta(token);
 		return transacaoService.realizarTransacao(transacao);
 	}
-	
+
+	public List<TransacaoExtratoDTO> findExtrato(String token) {
+		Conta conta = context.getConta(token);
+		return conta.getTransacoes().stream().map(TransacaoExtratoDTO::build).collect(Collectors.toList());
+	}
+
 }

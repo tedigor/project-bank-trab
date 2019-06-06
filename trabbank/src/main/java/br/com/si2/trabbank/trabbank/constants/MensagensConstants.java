@@ -11,6 +11,8 @@ public class MensagensConstants {
 	public static String MENSAGEM_ERRO_07 = "Nenhum usuario logado";
 	public static String MENSAGEM_ERRO_08 = "Saldo insulficiente";
 	public static String MENSAGEM_ERRO_09 = "falha no tratamento da transacao";
+	public static String MENSAGEM_ERRO_10 = "Não autorizado";
+
 
 	public static String MENSAGEM_SUCESSO_01 = "A conta foi encerrada com sucesso!";
 	public static String MENSAGEM_SUCESSO_02 = "Saldo adicionado com sucesso";
