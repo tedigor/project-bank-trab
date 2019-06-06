@@ -22,6 +22,9 @@ public class TransacaoService {
 
 	@Autowired
 	private TransacaoDAO transacaoDao;
+	
+	@Autowired
+	private TransacaoBuilder transacaoBuilder;
 
 	public MensagemSucesso realizarTransacao(TransacaoDTO transacaoDTO) {
 
@@ -41,7 +44,7 @@ public class TransacaoService {
 
 			validarSaldo(transacaoDTO, conta);
 
-			Transacao transacao = TransacaoBuilder.transacaoSaqueBuild();
+			Transacao transacao = transacaoBuilder.transacaoSaqueBuild();
 			transacao.setValor(transacaoDTO.getValor());
 
 			conta.setSaldo(conta.getSaldo().subtract(transacaoDTO.getValor()));
@@ -52,6 +55,32 @@ public class TransacaoService {
 			contaService.save(conta);
 
 			return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_04);
+		} else {
+			return emprestimo(transacaoDTO);
+		}
+
+	}
+	
+	private MensagemSucesso emprestimo(TransacaoDTO transacaoDTO) {
+
+		if (TipoTransacao.EMPRESTIMO.equals(transacaoDTO.getTipoTransacao())) {
+
+			Conta conta = contaService.findByNumero(transacaoDTO.getContaFinal());
+
+			validarLimite(transacaoDTO, conta);
+
+			Transacao transacao = transacaoBuilder.transacaoEmprestimoBuild();
+			transacao.setValor(transacaoDTO.getValor());
+
+			conta.setSaldo(conta.getSaldo().add(transacaoDTO.getValor()));
+			conta.setLimite(conta.getLimite().subtract(transacaoDTO.getValor()));
+			
+			conta.getTransacoes().add(transacao);
+
+			transacaoDao.save(transacao);
+			contaService.save(conta);
+
+			return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_06);
 		} else {
 			return transferencia(transacaoDTO);
 		}
@@ -67,9 +96,9 @@ public class TransacaoService {
 
 			validarSaldo(transacaoDTO, contaOrigem);
 
-			Transacao transacaoOri = TransacaoBuilder.transacaoTransferenciaBuild();
+			Transacao transacaoOri = transacaoBuilder.transacaoTransferenciaBuild();
 			transacaoOri.setValor(transacaoDTO.getValor());
-			Transacao transacaoFinal = TransacaoBuilder.transacaoTransferenciaBuild();
+			Transacao transacaoFinal = transacaoBuilder.transacaoTransferenciaBuild();
 			transacaoFinal.setValor(transacaoDTO.getValor());
 
 			contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(transacaoDTO.getValor()));
@@ -96,7 +125,7 @@ public class TransacaoService {
 
 			Conta conta = contaService.findByNumero(transacaoDTO.getContaFinal());
 
-			Transacao transacao = TransacaoBuilder.transacaoDepositoBuild();
+			Transacao transacao = transacaoBuilder.transacaoDepositoBuild();
 			transacao.setValor(transacaoDTO.getValor());
 
 			conta.setSaldo(conta.getSaldo().add(transacaoDTO.getValor()));
@@ -114,6 +143,12 @@ public class TransacaoService {
 
 	private void validarSaldo(TransacaoDTO transacaoDTO, Conta conta) {
 		if (conta.getSaldo().compareTo(transacaoDTO.getValor()) < 0) {
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_08));
+		}
+	}
+	
+	private void validarLimite(TransacaoDTO transacaoDTO, Conta conta) {
+		if (conta.getLimite().compareTo(transacaoDTO.getValor()) < 0) {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_08));
 		}
 	}

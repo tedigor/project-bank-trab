@@ -7,18 +7,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import br.com.si2.trabbank.trabbank.enums.TipoConta;
 
 @Entity
 @Table(name = "Contas")
@@ -37,8 +34,11 @@ public class Conta extends EntityBase<Long> {
 	@Column(name = "saldo")
 	private BigDecimal saldo;
 
-	@Column(name = "tipo")
-	@Enumerated(EnumType.STRING)
+	@Column(name = "limite")
+	private BigDecimal limite;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_tipo_conta")
 	private TipoConta tipoConta;
 
 	@Column(name = "flagAtivo")
@@ -50,8 +50,8 @@ public class Conta extends EntityBase<Long> {
 	@OneToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "fk_conta")
 	private List<Transacao> transacoes = new ArrayList<>();
 
@@ -129,5 +129,13 @@ public class Conta extends EntityBase<Long> {
 
 	public void setTransacoes(List<Transacao> transacoes) {
 		this.transacoes = transacoes;
+	}
+
+	public BigDecimal getLimite() {
+		return limite;
+	}
+
+	public void setLimite(BigDecimal limite) {
+		this.limite = limite;
 	}
 }

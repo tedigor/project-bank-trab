@@ -17,5 +17,6 @@ public class MensagensConstants {
 	public static String MENSAGEM_SUCESSO_03 = "Sucesso ao cadastrar cliente e conta :";
 	public static String MENSAGEM_SUCESSO_04 = "Saque realizado com sucesso";
 	public static String MENSAGEM_SUCESSO_05 = "Transferencia realizada com sucesso";
+	public static String MENSAGEM_SUCESSO_06 = "Emprestimo realizado com sucesso";
 
 }
