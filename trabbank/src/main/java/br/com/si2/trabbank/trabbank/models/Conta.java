@@ -19,20 +19,20 @@ public class Conta extends EntityBase<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Id_conta")
+	@Column(name = "id_conta")
 	private Long id;
 
-	@Column(name = "Numero")
+	@Column(name = "numero")
 	private Long numeroConta;
 
-	@Column(name = "Saldo")
+	@Column(name = "saldo")
 	private BigDecimal saldo;
 
 	@Column(name = "flagAtivo")
 	private Boolean isAtivo;
 	
 	@OneToOne
-	@JoinColumn(name = "Id_cliente", nullable = false)
+	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
 	@Override

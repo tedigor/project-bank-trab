@@ -1,6 +1,7 @@
 package br.com.si2.trabbank.trabbank.services;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class ContaService {
 
 	@Autowired
 	private ContaDAO dao;
-	
+
 	public Conta findConta(Long id) {
 
 		Conta c = dao.findById(id);
@@ -48,6 +49,10 @@ public class ContaService {
 
 	public Boolean isSaldoContaValidoPorId(Long id) {
 		return isSaldoContaValido(findConta(id));
+	}
+
+	public List<Conta> findAll() {
+		return dao.findAll();
 	}
 
 }

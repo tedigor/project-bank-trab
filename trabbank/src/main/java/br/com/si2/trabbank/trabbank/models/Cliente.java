@@ -18,13 +18,13 @@ public class Cliente extends EntityBase<Long>{
 	@Column(name = "id_cliente")
 	private Long id;
 	
-	@Column(name = "cod_cliente", nullable = false, unique = true)
+	@Column(name = "codigo", nullable = false, unique = true)
 	private String codigo;
 	
-	@Column(name = "nome_pessoa")
+	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "ativo")
+	@Column(name = "flagAtivo")
 	private Boolean isAtivo;
 
 	public Long getId() {
