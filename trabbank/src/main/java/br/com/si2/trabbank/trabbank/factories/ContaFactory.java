@@ -1,26 +1,29 @@
-package br.com.si2.trabbank.trabbank.builders;
+package br.com.si2.trabbank.trabbank.factories;
 
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.si2.trabbank.trabbank.enums.TipoConta;
 import br.com.si2.trabbank.trabbank.models.Conta;
 import br.com.si2.trabbank.trabbank.services.TipoContaService;
 
 @Component
-public class ContaBuilder {
+public class ContaFactory {
 
 	private static Long numero_conta = 1000L;
-	
+
 	@Autowired
 	private TipoContaService service;
 
-	public Conta contaCorrenteBuild() {
-		Conta conta = ContaDefault();
-
-		conta.setTipoConta(service.findById(1));
-
+	public Conta gerarConta(TipoConta tipoConta) {
+		Conta conta;
+		if (TipoConta.CONTA_CORRENTE.equals(tipoConta)) {
+			conta = contaCorrenteBuild();
+		} else {
+			conta = contaPoupancaBuild();
+		}
 		return conta;
 	}
 
@@ -44,4 +47,13 @@ public class ContaBuilder {
 
 		return conta;
 	}
+
+	public Conta contaCorrenteBuild() {
+		Conta conta = ContaDefault();
+
+		conta.setTipoConta(service.findById(1));
+
+		return conta;
+	}
+
 }

@@ -138,4 +138,5 @@ public class Conta extends EntityBase<Long> {
 	public void setLimite(BigDecimal limite) {
 		this.limite = limite;
 	}
+
 }
