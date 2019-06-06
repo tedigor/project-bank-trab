@@ -1,6 +1,6 @@
 <h1>Trab Bank</h1>
-<p>Casos de uso disponiveis em: <a href="http://www.google.com.br">link</a></p>
-<p>Swagger: <a href="http://www.google.com.br">link</a></p>
+<p>Casos de uso disponiveis em: <a href="https://drive.google.com/drive/folders/1yNIEybakDNf_AyRnBcVqe7C_sxsFCt26?usp=sharing">link</a></p>
+<p>Swagger com aplicação rodando: <a href="http://localhost:8080/swagger-ui.html">link</a></p>
 
 <h2>Padrões de projeto</h2>
 
