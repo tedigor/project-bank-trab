@@ -38,6 +38,8 @@
     O @Bean do spring boot implementa o padrão stateless<br />
 </p>
 
+<img src="./imgsreadme/stateless.png">
+
 <h3>6. Factory</h3> 
 <p>
     Implementado para entregar uma instancia de conta dependendo do tipo passado como argumento.
