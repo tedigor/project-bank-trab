@@ -38,6 +38,7 @@ public class BaseDAOImpl<K extends Serializable, T extends EntityBase<K>> implem
 		if (entity.getId() != null) {
 			getEntityManager().merge(entity);
 		} else {
+			entity.setAtivo(true);
 			getEntityManager().persist(entity);
 		}
 
