@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
@@ -35,8 +36,8 @@ public class ContaController {
 	}
 	
 	@PutMapping("transacao")
-	public ResponseEntity<MensagemSucesso> realizarTransacao(@RequestBody TransacaoDTO transacaoDTO){
-		return new ResponseEntity<MensagemSucesso>(contaService.realizarTransacao(transacaoDTO), HttpStatus.OK);
+	public ResponseEntity<MensagemSucesso> realizarTransacao(@RequestHeader("Authorization") String token , @RequestBody TransacaoDTO transacaoDTO){
+		return new ResponseEntity<MensagemSucesso>(contaService.realizarTransacao(token,transacaoDTO), HttpStatus.OK);
 	}
 
 }

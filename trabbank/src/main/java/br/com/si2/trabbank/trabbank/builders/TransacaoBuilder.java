@@ -1,32 +1,44 @@
 package br.com.si2.trabbank.trabbank.builders;
 
-import br.com.si2.trabbank.trabbank.enums.TipoTransacao;
-import br.com.si2.trabbank.trabbank.models.Transacao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import br.com.si2.trabbank.trabbank.models.Transacao;
+import br.com.si2.trabbank.trabbank.services.TipoTransacaoService;
+
+@Component
 public class TransacaoBuilder {
 
-	public static Transacao transacaoSaqueBuild() {
+	@Autowired
+	private TipoTransacaoService service;
+
+	public Transacao transacaoSaqueBuild() {
 		Transacao trans = new Transacao();
-		
-		trans.setTipoTransacao(TipoTransacao.SAQUE);
-		
+
+		trans.setTipoTransacao(service.findById(1));
+
+		return trans;
+	}
+
+	public Transacao transacaoDepositoBuild() {
+		Transacao trans = new Transacao();
+
+		trans.setTipoTransacao(service.findById(3));
+		return trans;
+	}
+
+	public Transacao transacaoTransferenciaBuild() {
+		Transacao trans = new Transacao();
+
+		trans.setTipoTransacao(service.findById(2));
 		return trans;
 	}
 	
-	public static Transacao transacaoDepositoBuild() {
+	public Transacao transacaoEmprestimoBuild() {
 		Transacao trans = new Transacao();
-		
-		trans.setTipoTransacao(TipoTransacao.DEPOSITO
-				);
+
+		trans.setTipoTransacao(service.findById(4));
 		return trans;
 	}
-	
-	public static Transacao transacaoTransferenciaBuild() {
-		Transacao trans = new Transacao();
-		
-		trans.setTipoTransacao(TipoTransacao.TRANSFERENCIA
-				);
-		return trans;
-	}
-	
+
 }

@@ -104,7 +104,8 @@ public class ContaService {
 		return c.getSaldo();
 	}
 
-	public MensagemSucesso realizarTransacao(TransacaoDTO transacao) {
+	public MensagemSucesso realizarTransacao(String token,TransacaoDTO transacao) {
+		Conta conta = context.getConta(token);
 		return transacaoService.realizarTransacao(transacao);
 	}
 	

@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import br.com.si2.trabbank.trabbank.enums.TipoTransacao;
 
 @Entity
 @Table(name = "transacao")
@@ -23,8 +21,8 @@ public class Transacao extends EntityBase<Long> {
 	@Column(name = "id_transacao")
 	private Long id;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_transacao")
+	@ManyToOne
+	@JoinColumn(name = "fktipo_transacao")
 	private TipoTransacao tipoTransacao;
 
 	@Column(name = "valor")

@@ -23,6 +23,9 @@ public class ClienteService {
 
 	@Autowired
 	private ContaService contaService;
+	
+	@Autowired
+	private ContaBuilder contaBuilder;
 
 	public MensagemSucesso cadastrarCliente(ClienteDTO clienteDto) {
 
@@ -50,9 +53,9 @@ public class ClienteService {
 	private Conta gerarConta(ClienteDTO clienteDto) {
 		Conta conta;
 		if (TipoConta.CONTA_CORRENTE.equals(clienteDto.getTipoConta())) {
-			conta = ContaBuilder.contaCorrenteBuild();
+			conta = contaBuilder.contaCorrenteBuild();
 		} else {
-			conta = ContaBuilder.contaPoupancaBuild();
+			conta = contaBuilder.contaPoupancaBuild();
 		}
 		return conta;
 	}
