@@ -1,5 +1,6 @@
 <h1>Trab Bank</h1>
-<p>Casos de uso disponiveis em: <a>link</a></p>
+<p>Casos de uso disponiveis em: <a href="http://www.google.com.br">link</a></p>
+<p>Swagger: <a href="http://www.google.com.br">link</a></p>
 
 <h2>Padrões de projeto</h2>
 
