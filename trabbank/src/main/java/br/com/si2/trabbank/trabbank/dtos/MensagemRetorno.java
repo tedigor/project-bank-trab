@@ -1,10 +1,13 @@
 package br.com.si2.trabbank.trabbank.dtos;
 
 public class MensagemRetorno {
-	
+
 	private String mensagem;
-	
+
 	private String type;
+
+	public MensagemRetorno() {
+	}
 
 	public MensagemRetorno(String mensagem, String type) {
 		super();
@@ -27,4 +30,5 @@ public class MensagemRetorno {
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }

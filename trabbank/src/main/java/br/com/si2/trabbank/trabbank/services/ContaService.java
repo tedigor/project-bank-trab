@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.si2.trabbank.trabbank.builders.MensagemRetornoBuilder;
 import br.com.si2.trabbank.trabbank.constants.MensagensConstants;
 import br.com.si2.trabbank.trabbank.daos.ContaDAO;
 import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
+import br.com.si2.trabbank.trabbank.dtos.AlterarDadosDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
+import br.com.si2.trabbank.trabbank.dtos.MensagemRetorno;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoExtratoDTO;
@@ -114,6 +117,13 @@ public class ContaService {
 	public List<TransacaoExtratoDTO> findExtrato(String token) {
 		Conta conta = context.getConta(token);
 		return conta.getTransacoes().stream().map(TransacaoExtratoDTO::build).collect(Collectors.toList());
+	}
+
+	public MensagemRetorno alterarDados(String token, AlterarDadosDTO dto) {
+		Conta c = dao.findById(dto.getId());
+		c.setSenha(dto.getSenha());
+		dao.save(c);
+		return MensagemRetornoBuilder.sucesso().dadosAlterados().build();
 	}
 
 }

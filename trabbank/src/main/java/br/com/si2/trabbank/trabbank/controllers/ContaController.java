@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.si2.trabbank.trabbank.dtos.AlterarDadosDTO;
+import br.com.si2.trabbank.trabbank.dtos.MensagemRetorno;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoExtratoDTO;
@@ -47,4 +49,9 @@ public class ContaController {
 		return new ResponseEntity<MensagemSucesso>(contaService.realizarTransacao(token, transacaoDTO), HttpStatus.OK);
 	}
 
+	@PutMapping
+	public ResponseEntity<MensagemRetorno> realizarTransacao(@RequestHeader("Authorization") String token,
+			AlterarDadosDTO dto) {
+		return new ResponseEntity<MensagemRetorno>(contaService.alterarDados(token, dto), HttpStatus.OK);
+	}
 }
