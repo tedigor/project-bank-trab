@@ -22,5 +22,5 @@ public class ContaDAOImpl extends BaseDAOImpl<Long, Conta> implements ContaDAO {
 		query.where(getCriteriaBuilder().equal(from.get("numeroConta"), numero));
 		return getEntityManager().createQuery(query).getResultList();
 	}
-
+	
 }

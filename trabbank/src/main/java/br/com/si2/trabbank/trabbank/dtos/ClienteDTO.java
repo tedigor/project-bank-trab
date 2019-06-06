@@ -9,7 +9,7 @@ public class ClienteDTO {
 	private String codigo;
 	
 	private TipoConta tipoConta;
-
+	
 	public String getNome() {
 		return nome;
 	}

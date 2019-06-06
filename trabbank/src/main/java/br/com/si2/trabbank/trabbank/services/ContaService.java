@@ -11,6 +11,7 @@ import br.com.si2.trabbank.trabbank.daos.ContaDAO;
 import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
+import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
 import br.com.si2.trabbank.trabbank.exceptions.BankTrabException;
 import br.com.si2.trabbank.trabbank.models.Conta;
 import br.com.si2.trabbank.trabbank.security.ContextoAutorizacao;
@@ -20,6 +21,9 @@ public class ContaService {
 
 	@Autowired
 	private ContaDAO dao;
+	
+	@Autowired
+	private TransacaoService transacaoService;
 
 	@Autowired
 	private ContextoAutorizacao context;
@@ -100,4 +104,8 @@ public class ContaService {
 		return c.getSaldo();
 	}
 
+	public MensagemSucesso realizarTransacao(TransacaoDTO transacao) {
+		return transacaoService.realizarTransacao(transacao);
+	}
+	
 }

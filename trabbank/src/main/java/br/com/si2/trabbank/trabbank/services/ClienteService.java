@@ -49,9 +49,9 @@ public class ClienteService {
 	private Conta gerarConta(ClienteDTO clienteDto) {
 		Conta conta;
 		if (TipoConta.CONTA_CORRENTE.equals(clienteDto.getTipoConta())) {
-			conta = ContaBuilder.contaCorrenteBuilder();
+			conta = ContaBuilder.contaCorrenteBuild();
 		} else {
-			conta = ContaBuilder.contaPoupancaBuilder();
+			conta = ContaBuilder.contaPoupancaBuild();
 		}
 		return conta;
 	}

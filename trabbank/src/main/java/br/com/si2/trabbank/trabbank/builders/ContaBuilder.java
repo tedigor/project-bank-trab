@@ -8,7 +8,7 @@ import br.com.si2.trabbank.trabbank.models.Conta;
 
 public class ContaBuilder {
 
-	public static Conta contaCorrenteBuilder() {
+	public static Conta contaCorrenteBuild() {
 		Conta conta = ContaDefault();
 
 		conta.setTipoConta(TipoConta.CONTA_CORRENTE);
@@ -16,7 +16,7 @@ public class ContaBuilder {
 		return conta;
 	}
 
-	public static Conta contaPoupancaBuilder() {
+	public static Conta contaPoupancaBuild() {
 		Conta conta = ContaDefault();
 
 		conta.setTipoConta(TipoConta.POUPANCA);
