@@ -27,10 +27,17 @@ public class TransacaoBuilder {
 		return trans;
 	}
 
-	public Transacao transacaoTransferenciaBuild() {
+	public Transacao transacaoTransferenciaSaidaBuild() {
 		Transacao trans = new Transacao();
 
 		trans.setTipoTransacao(service.findById(2));
+		return trans;
+	}
+	
+	public Transacao transacaoTransferenciaEntradaBuild() {
+		Transacao trans = new Transacao();
+
+		trans.setTipoTransacao(service.findById(5));
 		return trans;
 	}
 	

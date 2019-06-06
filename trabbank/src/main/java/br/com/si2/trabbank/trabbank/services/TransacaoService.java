@@ -94,9 +94,9 @@ public class TransacaoService {
 
 			validarSaldo(transacaoDTO, contaOrigem);
 
-			Transacao transacaoOri = transacaoBuilder.transacaoTransferenciaBuild();
+			Transacao transacaoOri = transacaoBuilder.transacaoTransferenciaSaidaBuild();
 			transacaoOri.setValor(transacaoDTO.getValor());
-			Transacao transacaoFinal = transacaoBuilder.transacaoTransferenciaBuild();
+			Transacao transacaoFinal = transacaoBuilder.transacaoTransferenciaEntradaBuild();
 			transacaoFinal.setValor(transacaoDTO.getValor());
 
 			contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(transacaoDTO.getValor()));
@@ -105,8 +105,10 @@ public class TransacaoService {
 			contaOrigem.getTransacoes().add(transacaoOri);
 			contaFinal.getTransacoes().add(transacaoFinal);
 
-			transacaoDao.save(transacaoFinal);
+			transacaoOri.setTransacao(transacaoFinal);
+			
 			transacaoDao.save(transacaoOri);
+			transacaoDao.save(transacaoFinal);
 
 			contaService.save(contaFinal);
 			contaService.save(contaOrigem);
