@@ -4,12 +4,16 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.si2.trabbank.trabbank.enums.TipoConta;
 
 @Entity
 @Table(name = "Contas")
@@ -27,6 +31,10 @@ public class Conta extends EntityBase<Long> {
 
 	@Column(name = "Saldo")
 	private BigDecimal saldo;
+	
+	@Column(name = "tipo")
+	@Enumerated(EnumType.STRING)
+	private TipoConta tipoConta;
 
 	@Column(name = "flagAtivo")
 	private Boolean isAtivo;
@@ -43,6 +51,22 @@ public class Conta extends EntityBase<Long> {
 	@Override
 	public Long getId() {
 		return id;
+	}
+
+	public TipoConta getTipoConta() {
+		return tipoConta;
+	}
+
+	public void setTipoConta(TipoConta tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
