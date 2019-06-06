@@ -25,19 +25,15 @@ public class TransacaoService {
 
 	public MensagemSucesso realizarTransacao(TransacaoDTO transacaoDTO) {
 
-		MensagemSucesso mensagemSucesso = new MensagemSucesso("");
-
-		inicarChain(transacaoDTO, mensagemSucesso);
-
-		return mensagemSucesso;
+		return inicarChain(transacaoDTO);
 
 	}
 
-	private void inicarChain(TransacaoDTO transacaoDTO, MensagemSucesso mensagemSucesso) {
-		saque(transacaoDTO, mensagemSucesso);
+	private MensagemSucesso inicarChain(TransacaoDTO transacaoDTO) {
+		return saque(transacaoDTO);
 	}
 
-	private void saque(TransacaoDTO transacaoDTO, MensagemSucesso mensagemSucesso) {
+	private MensagemSucesso saque(TransacaoDTO transacaoDTO) {
 
 		if (TipoTransacao.SAQUE.equals(transacaoDTO.getTipoTransacao())) {
 
@@ -55,14 +51,14 @@ public class TransacaoService {
 			transacaoDao.save(transacao);
 			contaService.save(conta);
 
-			mensagemSucesso = new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_04);
+			return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_04);
 		} else {
-			transferencia(transacaoDTO, mensagemSucesso);
+			return transferencia(transacaoDTO);
 		}
 
 	}
 
-	private void transferencia(TransacaoDTO transacaoDTO, MensagemSucesso mensagemSucesso) {
+	private MensagemSucesso transferencia(TransacaoDTO transacaoDTO) {
 
 		if (TipoTransacao.TRANSFERENCIA.equals(transacaoDTO.getTipoTransacao())) {
 
@@ -71,12 +67,12 @@ public class TransacaoService {
 
 			validarSaldo(transacaoDTO, contaOrigem);
 
-			Transacao transacaoOri = TransacaoBuilder.transacaoSaqueBuild();
+			Transacao transacaoOri = TransacaoBuilder.transacaoTransferenciaBuild();
 			transacaoOri.setValor(transacaoDTO.getValor());
-			Transacao transacaoFinal = TransacaoBuilder.transacaoDepositoBuild();
+			Transacao transacaoFinal = TransacaoBuilder.transacaoTransferenciaBuild();
 			transacaoFinal.setValor(transacaoDTO.getValor());
 
-			contaOrigem.setSaldo(contaFinal.getSaldo().subtract(transacaoDTO.getValor()));
+			contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(transacaoDTO.getValor()));
 			contaFinal.setSaldo(contaFinal.getSaldo().add(transacaoDTO.getValor()));
 
 			contaOrigem.getTransacoes().add(transacaoOri);
@@ -88,13 +84,13 @@ public class TransacaoService {
 			contaService.save(contaFinal);
 			contaService.save(contaOrigem);
 
-			mensagemSucesso = new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_05);
+			return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_05);
 		} else {
-			deposito(transacaoDTO, mensagemSucesso);
+			return deposito(transacaoDTO);
 		}
 	}
 
-	private void deposito(TransacaoDTO transacaoDTO, MensagemSucesso mensagemSucesso) {
+	private MensagemSucesso deposito(TransacaoDTO transacaoDTO) {
 
 		if (TipoTransacao.DEPOSITO.equals(transacaoDTO.getTipoTransacao())) {
 
@@ -110,7 +106,7 @@ public class TransacaoService {
 			transacaoDao.save(transacao);
 			contaService.save(conta);
 
-			mensagemSucesso = new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_02);
+			return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_02);
 		} else {
 			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_09));
 		}

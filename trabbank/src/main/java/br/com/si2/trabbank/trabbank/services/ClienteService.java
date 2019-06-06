@@ -40,6 +40,7 @@ public class ClienteService {
 		conta = gerarConta(clienteDto);
 
 		conta.setCliente(cliente);
+		conta.setSenha(clienteDto.getSenha());
 
 		contaService.save(conta);
 

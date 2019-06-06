@@ -8,6 +8,8 @@ import br.com.si2.trabbank.trabbank.models.Conta;
 
 public class ContaBuilder {
 
+	private static Long numero_conta = 1000L;
+
 	public static Conta contaCorrenteBuild() {
 		Conta conta = ContaDefault();
 
@@ -30,8 +32,10 @@ public class ContaBuilder {
 
 		Long timestamp = new Date().getTime();
 
-		conta.setNumeroConta(Long.parseLong(timestamp.toString().substring(0, 5)));
+		conta.setNumeroConta(numero_conta);
 		conta.setSaldo(BigDecimal.ZERO);
+
+		numero_conta++;
 
 		return conta;
 	}

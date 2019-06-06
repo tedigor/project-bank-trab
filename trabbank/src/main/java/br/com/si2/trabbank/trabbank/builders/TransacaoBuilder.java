@@ -21,4 +21,12 @@ public class TransacaoBuilder {
 		return trans;
 	}
 	
+	public static Transacao transacaoTransferenciaBuild() {
+		Transacao trans = new Transacao();
+		
+		trans.setTipoTransacao(TipoTransacao.TRANSFERENCIA
+				);
+		return trans;
+	}
+	
 }
