@@ -35,7 +35,7 @@ public class ContaController {
 	}
 
 	@GetMapping("extrato")
-	public ResponseEntity<List<TransacaoExtratoDTO>> listarContas(@RequestHeader("Authorization") String token) {
+	public ResponseEntity<List<TransacaoExtratoDTO>> findExtrato(@RequestHeader("Authorization") String token) {
 		return new ResponseEntity<List<TransacaoExtratoDTO>>(contaService.findExtrato(token), HttpStatus.OK);
 	}
 
@@ -51,7 +51,7 @@ public class ContaController {
 	}
 
 	@PutMapping
-	public ResponseEntity<MensagemRetorno> realizarTransacao(@RequestHeader("Authorization") String token,
+	public ResponseEntity<MensagemRetorno> alterarDados(@RequestHeader("Authorization") String token,
 			AlterarDadosDTO dto) {
 		return new ResponseEntity<MensagemRetorno>(contaService.alterarDados(token, dto), HttpStatus.OK);
 	}
