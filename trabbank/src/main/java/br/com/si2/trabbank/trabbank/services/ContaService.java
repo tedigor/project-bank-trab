@@ -108,7 +108,7 @@ public class ContaService {
 	public ExibirExtratoClienteDTO consultarExtrato(String token) {
 		Conta c = context.getConta(token);
 		
-		transacaoService.findTransacoes(c);
+//		transacaoService.findTransacoes(c);
 		
 		return null;
 	}

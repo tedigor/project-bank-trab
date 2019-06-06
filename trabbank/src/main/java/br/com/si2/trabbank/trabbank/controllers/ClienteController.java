@@ -34,7 +34,7 @@ public class ClienteController {
 
 	@GetMapping("extrato")
 	public ResponseEntity<ExibirInfoClienteDTO> consultarExtrato(@RequestHeader("Authorization") String token) {
-		return new ResponseEntity<ExibirInfoClienteDTO>(clienteService.consultarExtrato(token), HttpStatus.OK);
+//		return new ResponseEntity<ExibirInfoClienteDTO>(clienteService.consultarExtrato(token), HttpStatus.OK);
 	}
 
 }
