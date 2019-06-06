@@ -24,7 +24,7 @@ public class ContaService {
 
 		Conta c = dao.findById(id);
 		if (c == null) {
-			throw new BankTrabException(new MensagemErro(MensagensConstants.ME01));
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_01));
 		}
 		return c;
 
@@ -34,12 +34,12 @@ public class ContaService {
 
 		Conta c = findConta(id);
 		if (isSaldoContaValido(c)) {
-			throw new BankTrabException(new MensagemErro(MensagensConstants.ME02));
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_02));
 		}
 		c.setAtivo(false);
 		dao.save(c);
 
-		return new MensagemSucesso(MensagensConstants.MS01);
+		return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_01);
 
 	}
 
@@ -63,17 +63,31 @@ public class ContaService {
 		Conta conta = dao.findById(adicionarSaldoDTO.getIdConta());
 
 		if (!Boolean.TRUE.equals(conta.getAtivo())) {
-			throw new BankTrabException(new MensagemErro(MensagensConstants.ME03));
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_03));
 		}
 
 		conta.setSaldo(conta.getSaldo().add(adicionarSaldoDTO.getDeposito()));
 
 		dao.save(conta);
 
-		return new MensagemSucesso(MensagensConstants.MS02);
+		return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_02);
 	}
 
 	public void save(Conta conta) {
 		dao.save(conta);
+	}
+
+	public Conta findByNumero(Long numero) {
+
+		List<Conta> list = dao.findByNumero(numero);
+
+		if (list.size() > 1) {
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_05));
+		} else if (list.size() == 0) {
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_06));
+		}
+
+		return list.get(0);
+
 	}
 }

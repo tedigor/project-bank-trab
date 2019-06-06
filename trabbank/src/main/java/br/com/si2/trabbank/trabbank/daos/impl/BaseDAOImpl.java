@@ -20,6 +20,7 @@ public class BaseDAOImpl<K extends Serializable, T extends EntityBase<K>> implem
 
 	private Class<T> classe;
 
+	@SuppressWarnings("unchecked")
 	public BaseDAOImpl() {
 		this.classe = (Class<T>) getTypeClass();
 	}

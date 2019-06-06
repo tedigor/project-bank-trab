@@ -9,11 +9,12 @@ import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 public class BankTrabException extends RuntimeException {
 
 	private static final long serialVersionUID = -2825806295171631257L;
-	
+
+	@SuppressWarnings("unused")
 	private MensagemErro erro;
-	
+
 	public BankTrabException(MensagemErro erro) {
 		this.erro = erro;
 	}
-	
+
 }

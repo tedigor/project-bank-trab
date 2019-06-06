@@ -42,7 +42,7 @@ public class ClienteService {
 
 		contaService.save(conta);
 
-		return new MensagemSucesso(MensagensConstants.MS03 + conta.getNumeroConta());
+		return new MensagemSucesso(MensagensConstants.MENSAGEM_SUCESSO_03 + conta.getNumeroConta());
 	}
 
 	private Conta gerarConta(ClienteDTO clienteDto) {
@@ -57,7 +57,8 @@ public class ClienteService {
 
 	private void validarNomeConta(ClienteDTO clienteDto) {
 		if (dao.existysByNome(clienteDto.getNome())) {
-			throw new BankTrabException(new MensagemErro(MensagensConstants.ME04));
+			throw new BankTrabException(new MensagemErro(MensagensConstants.MENSAGEM_ERRO_04));
 		}
 	}
+
 }

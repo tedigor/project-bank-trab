@@ -31,14 +31,17 @@ public class Conta extends EntityBase<Long> {
 
 	@Column(name = "saldo")
 	private BigDecimal saldo;
-	
+
 	@Column(name = "tipo")
 	@Enumerated(EnumType.STRING)
 	private TipoConta tipoConta;
 
 	@Column(name = "flagAtivo")
 	private Boolean isAtivo;
-	
+
+	@Column(name = "senha")
+	private String senha;
+
 	@OneToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
