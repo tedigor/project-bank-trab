@@ -24,9 +24,20 @@
  
 <img src="./imgsreadme/DTO.png"> 
 
+<h3>4. MVC</h3>
+<p>
+    A arquitetura do projeto utiliza MVC<br />
+</p>
+<!--  
+<img src="./imgsreadme/DTO.png">  -->
 
 
-<h3>5. Factory</h3> 
+<h3>5. Stateless</h3>
+<p>
+    O @Bean do spring boot implementa o padrão stateless<br />
+</p>
+
+<h3>6. Factory</h3> 
 <p>
     Implementado para entregar uma instancia de conta dependendo do tipo passado como argumento.
 </p>
@@ -35,7 +46,7 @@
 
 <p>Para criação de uma conta</p> 
 
-<h3>6. Chain of Responsibility</h3>
+<h3>7. Chain of Responsibility</h3>
 <p>
     Utilizado para ter acesso a cadeia de requisição e a partir HttpHeaders que é o handler colocar o token no header<br />
 </p>
