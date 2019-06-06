@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import br.com.si2.trabbank.trabbank.daos.BaseDAO;
 import br.com.si2.trabbank.trabbank.models.EntityBase;
@@ -34,6 +36,7 @@ public class BaseDAOImpl<K extends Serializable, T extends EntityBase<K>> implem
 		return getEntityManager().createQuery(query).getResultList();
 	}
 
+	@Transactional(value = TxType.REQUIRED)
 	public T save(T entity) {
 
 		if (entity.getId() != null) {
@@ -46,6 +49,7 @@ public class BaseDAOImpl<K extends Serializable, T extends EntityBase<K>> implem
 		return entity;
 	}
 
+	@Transactional(value = TxType.REQUIRED)
 	public T deleteById(K id) {
 
 		T entity = getEntityManager().find(classe, id);

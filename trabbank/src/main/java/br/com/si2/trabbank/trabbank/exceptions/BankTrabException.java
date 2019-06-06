@@ -10,11 +10,15 @@ public class BankTrabException extends RuntimeException {
 
 	private static final long serialVersionUID = -2825806295171631257L;
 
-	@SuppressWarnings("unused")
 	private MensagemErro erro;
 
 	public BankTrabException(MensagemErro erro) {
+		super(erro.getMensagem());
 		this.erro = erro;
+	}
+	
+	public MensagemErro getErro() {
+		return this.erro;
 	}
 
 }

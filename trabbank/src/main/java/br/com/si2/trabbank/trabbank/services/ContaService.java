@@ -12,6 +12,7 @@ import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
 import br.com.si2.trabbank.trabbank.dtos.ExibirExtratoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
+import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
 import br.com.si2.trabbank.trabbank.exceptions.BankTrabException;
 import br.com.si2.trabbank.trabbank.models.Conta;
 import br.com.si2.trabbank.trabbank.security.ContextoAutorizacao;
@@ -112,4 +113,8 @@ public class ContaService {
 		return null;
 	}
 
+	public MensagemSucesso realizarTransacao(TransacaoDTO transacao) {
+		return transacaoService.realizarTransacao(transacao);
+	}
+	
 }

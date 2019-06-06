@@ -41,6 +41,7 @@ public class ClienteService {
 		conta = gerarConta(clienteDto);
 
 		conta.setCliente(cliente);
+		conta.setSenha(clienteDto.getSenha());
 
 		contaService.save(conta);
 
@@ -50,9 +51,9 @@ public class ClienteService {
 	private Conta gerarConta(ClienteDTO clienteDto) {
 		Conta conta;
 		if (TipoConta.CONTA_CORRENTE.equals(clienteDto.getTipoConta())) {
-			conta = ContaBuilder.contaCorrenteBuilder();
+			conta = ContaBuilder.contaCorrenteBuild();
 		} else {
-			conta = ContaBuilder.contaPoupancaBuilder();
+			conta = ContaBuilder.contaPoupancaBuild();
 		}
 		return conta;
 	}
