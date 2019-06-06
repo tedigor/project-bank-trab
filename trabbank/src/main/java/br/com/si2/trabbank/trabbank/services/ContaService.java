@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.si2.trabbank.trabbank.constants.MensagensConstants;
 import br.com.si2.trabbank.trabbank.daos.ContaDAO;
 import br.com.si2.trabbank.trabbank.dtos.AdicionarSaldoDTO;
+import br.com.si2.trabbank.trabbank.dtos.ExibirExtratoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.exceptions.BankTrabException;
@@ -20,6 +21,9 @@ public class ContaService {
 
 	@Autowired
 	private ContaDAO dao;
+	
+	@Autowired
+	private TransacaoService transacaoService;
 
 	@Autowired
 	private ContextoAutorizacao context;
@@ -98,6 +102,14 @@ public class ContaService {
 	public BigDecimal consultarSaldo(String token) {
 		Conta c = context.getConta(token);
 		return c.getSaldo();
+	}
+
+	public ExibirExtratoClienteDTO consultarExtrato(String token) {
+		Conta c = context.getConta(token);
+		
+		transacaoService.findTransacoes(c);
+		
+		return null;
 	}
 
 }

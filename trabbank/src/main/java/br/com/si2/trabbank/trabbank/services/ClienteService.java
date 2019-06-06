@@ -7,6 +7,7 @@ import br.com.si2.trabbank.trabbank.builders.ContaBuilder;
 import br.com.si2.trabbank.trabbank.constants.MensagensConstants;
 import br.com.si2.trabbank.trabbank.daos.ClienteDAO;
 import br.com.si2.trabbank.trabbank.dtos.ClienteDTO;
+import br.com.si2.trabbank.trabbank.dtos.ExibirExtratoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.ExibirInfoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemErro;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
@@ -64,6 +65,12 @@ public class ClienteService {
 
 	public ExibirInfoClienteDTO consultarSaldo(String token) {
 		return new ExibirInfoClienteDTO(contaService.consultarSaldo(token));
+	}
+
+	public ExibirExtratoClienteDTO consultarExtrato(String token) {
+		// TODO: terminar
+//		return new ExibirInfoClienteDTO(contaService.consultarExtrato(token));
+		return null;
 	}
 
 }
