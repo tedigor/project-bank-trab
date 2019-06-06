@@ -2,12 +2,14 @@ package br.com.si2.trabbank.trabbank.models;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,10 @@ public class Transacao extends EntityBase<Long> {
 	@Column(name = "id_transacao")
 	private Long id;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_transacao")
+	private Transacao transacao;
+	
 	@ManyToOne
 	@JoinColumn(name = "fktipo_transacao")
 	private TipoTransacao tipoTransacao;
@@ -65,4 +71,13 @@ public class Transacao extends EntityBase<Long> {
 	public Boolean getAtivo() {
 		return this.isAtivo;
 	}
+
+	public Transacao getTransacao() {
+		return transacao;
+	}
+
+	public void setTransacao(Transacao transacao) {
+		this.transacao = transacao;
+	}
+	
 }
