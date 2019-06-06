@@ -51,6 +51,13 @@
 
 <h3>7. Chain of Responsibility</h3>
 <p>
+    A chor identifica qual o metodo deve tratar a solicitação de transação<br />
+</p>
+ 
+<img src="./imgsreadme/chain-2.png"> 
+
+<h3>8. Chain of Responsibility</h3>
+<p>
     Utilizado para ter acesso a cadeia de requisição e a partir HttpHeaders que é o handler colocar o token no header<br />
 </p>
  
