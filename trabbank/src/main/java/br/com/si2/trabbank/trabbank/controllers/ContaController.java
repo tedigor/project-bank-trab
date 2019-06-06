@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.si2.trabbank.trabbank.dtos.AlterarDadosDTO;
+import br.com.si2.trabbank.trabbank.dtos.ExibirInfoClienteDTO;
 import br.com.si2.trabbank.trabbank.dtos.MensagemRetorno;
 import br.com.si2.trabbank.trabbank.dtos.MensagemSucesso;
 import br.com.si2.trabbank.trabbank.dtos.TransacaoDTO;
@@ -34,7 +35,7 @@ public class ContaController {
 	}
 
 	@GetMapping("extrato")
-	public ResponseEntity<List<TransacaoExtratoDTO>> listarContas(@RequestHeader("Authorization") String token) {
+	public ResponseEntity<List<TransacaoExtratoDTO>> findExtrato(@RequestHeader("Authorization") String token) {
 		return new ResponseEntity<List<TransacaoExtratoDTO>>(contaService.findExtrato(token), HttpStatus.OK);
 	}
 
@@ -50,8 +51,13 @@ public class ContaController {
 	}
 
 	@PutMapping
-	public ResponseEntity<MensagemRetorno> realizarTransacao(@RequestHeader("Authorization") String token,
+	public ResponseEntity<MensagemRetorno> alterarDados(@RequestHeader("Authorization") String token,
 			AlterarDadosDTO dto) {
 		return new ResponseEntity<MensagemRetorno>(contaService.alterarDados(token, dto), HttpStatus.OK);
+	}
+
+	@GetMapping("saldo")
+	public ResponseEntity<ExibirInfoClienteDTO> consultarSaldo(@RequestHeader("Authorization") String token) {
+		return new ResponseEntity<ExibirInfoClienteDTO>(contaService.consultarSaldo(token), HttpStatus.OK);
 	}
 }
